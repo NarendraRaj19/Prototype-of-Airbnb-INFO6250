@@ -1,0 +1,7 @@
+com.hometogo.controller.AdminController=org.springframework.stereotype.Component
+com.hometogo.controller.PropertyOwnerFormController=org.springframework.stereotype.Component
+com.hometogo.controller.RoleController=org.springframework.stereotype.Component
+com.hometogo.controller.UserFormController=org.springframework.stereotype.Component
+com.hometogo.pojo.Booking=javax.persistence.Entity,javax.persistence.Table
+com.hometogo.pojo.Property=javax.persistence.Entity,javax.persistence.Table
+com.hometogo.pojo.User=javax.persistence.Entity,javax.persistence.Table

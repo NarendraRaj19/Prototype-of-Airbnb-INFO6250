@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+        http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+        http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+    <!--
+    Most controllers will use the ControllerClassNameHandlerMapping above, but
+    for the index controller we are using ParameterizableViewController, so we must
+    define an explicit mapping for it.
+    -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/user/{propertyID}/booking.htm"/>
+            <bean class="com.hometogo.intercceptor.CustomerInterceptor"/>
+        </mvc:interceptor>
+        
+        <mvc:interceptor>
+            <mvc:mapping path="/user/{propertyID}/{userName}/bookingSuccess.htm"/>
+            <bean class="com.hometogo.intercceptor.CustomerInterceptor"/>
+        </mvc:interceptor>
+        
+        
+        <mvc:interceptor>
+            <mvc:mapping path="/property.htm"/>
+            <bean class="com.hometogo.intercceptor.PropertyOwnerInterceptor"/>
+        </mvc:interceptor>
+        
+        <mvc:interceptor>
+            <mvc:mapping path="/manage-property.htm"/>
+            <bean class="com.hometogo.intercceptor.PropertyOwnerInterceptor"/>
+        </mvc:interceptor>
+        
+        <mvc:interceptor>
+            <mvc:mapping path="/view-bookings.htm"/>
+            <bean class="com.hometogo.intercceptor.PropertyOwnerInterceptor"/>
+        </mvc:interceptor>
+        
+        <mvc:interceptor>
+            <mvc:mapping path="/propertyowner/{propertyID}/delete.htm"/>
+            <bean class="com.hometogo.intercceptor.PropertyOwnerInterceptor"/>
+        </mvc:interceptor>
+        
+        
+        <mvc:interceptor>
+            <mvc:mapping path="/propertyowner/{propertyID}/update.htm"/>
+            <bean class="com.hometogo.intercceptor.PropertyOwnerInterceptor"/>
+        </mvc:interceptor>
+        
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/{propertyID}/approve.htm"/>
+            <bean class="com.hometogo.intercceptor.AdminInterceptor"/>
+        </mvc:interceptor>
+        
+        <mvc:interceptor>
+            <mvc:mapping path="/admin-manage.htm"/>
+            <bean class="com.hometogo.intercceptor.AdminInterceptor"/>
+        </mvc:interceptor>
+        
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/{propertyID}/reject.htm"/>
+            <bean class="com.hometogo.intercceptor.AdminInterceptor"/>
+        </mvc:interceptor>
+        
+    </mvc:interceptors>
+    
+    
+    
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="index.htm">indexController</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp" />
+
+    <!--
+    The index controller.
+    -->
+    <bean name="indexController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="Home" />
+    
+    
+    <mvc:annotation-driven/>
+    <context:annotation-config/>
+    <context:component-scan base-package="com.hometogo.controller"/>
+
+</beans>
