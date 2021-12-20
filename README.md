@@ -4,7 +4,6 @@ This is the repo containing the codebase of my Final Project for the class INFO 
 ## SUMMARY
 HomeToGo is a vacation rental platform that’s allows ease booking of properties(rooms, houses, villas etc.,) by the users of the application. HomeToGo alsoprovides people who want to list their property for the rental business the scope to register their property which after the verifying the authenticity of the property the Admin gets to approve it. Once approved, the property is available for the end user to be booked based on it’s availability. The motive is to encourage local property owners to advertise their properties and make monetary benefits and also provide a reliable platform which customers can leverage to rent rooms.
 
-## TECH STACK
 # FRONT END
 - JAVA SERVER PAGES (JSP)
 - Java Standard Tag Library – Core tags
